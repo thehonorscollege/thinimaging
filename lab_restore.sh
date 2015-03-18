@@ -34,7 +34,7 @@ echo "Getting Office setup script..."
 /bin/chmod +x /usr/bin/curl_office_plists.sh
 
 echo "Getting Office preferences login script..."
-/usr/bin/curl http://hc-storage.cougarnet.uh.edu/scripts/curl_office_plists.plist -o "/Library/LaunchAgents/edu.uh.honors.curlofficeprefs.plist"
+/usr/bin/curl http://hc-storage.cougarnet.uh.edu/scripts/edu.uh.honors.curlofficeprefs.plist -o "/Library/LaunchAgents/edu.uh.honors.curlofficeprefs.plist"
 /bin/chmod 644 /Library/LaunchAgents/edu.uh.honors.curlofficeprefs.plist
 
 echo "Getting PaperCut login script..."
