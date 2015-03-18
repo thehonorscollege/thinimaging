@@ -1,0 +1,57 @@
+#!/bin/sh
+
+# start here
+kickstart="/System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart"
+systemsetup="/usr/sbin/systemsetup"
+networksetup="/usr/sbin/networksetup"
+genericppd="/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/PrintCore.framework/Versions/A/Resources/Generic.ppd"
+scutil="/usr/sbin/scutil"
+airport="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport"
+diskutil="/usr/sbin/diskutil"
+
+$networksetup -detectnewhardware
+
+
+echo "Turning off airport..."
+$networksetup -setairportpower en1 off
+$airport en1 prefs RequireAdminPowerToggle=YES
+$systemsetup -setwakeonnetworkaccess on
+
+echo "Turning on ssh..."
+$systemsetup -setremotelogin on
+
+echo "Turning on RemoteManagement..."
+$kickstart -activate -configure -access -on -users hcadmin -privs -all -restart -agent
+
+echo "Removing damaged PaperCut executable..."
+rm -rv /Volumes/Macintosh\ HD/Applications/PCClient.app
+
+echo "Getting ManagedInstalls.plist..."
+/usr/bin/curl http://hc-storage.cougarnet.uh.edu/munki/ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
+
+echo "Getting Office setup script..."
+/usr/bin/curl http://hc-storage.cougarnet.uh.edu/scripts/curl_office_plists.sh -o "/usr/bin/curl_office_plists.sh"
+/bin/chmod +x /usr/bin/curl_office_plists.sh
+
+echo "Getting Office preferences login script..."
+/usr/bin/curl http://hc-storage.cougarnet.uh.edu/scripts/curl_office_plists.plist -o "/Library/LaunchAgents/edu.uh.honors.curlofficeprefs.plist"
+/bin/chmod 644 /Library/LaunchAgents/edu.uh.honors.curlofficeprefs.plist
+
+echo "Getting PaperCut login script..."
+/usr/bin/curl http://hc-storage.cougarnet.uh.edu/scripts/edu.uh.honors.papercut.plist -o "/Library/LaunchAgents/edu.uh.honors.papercut.plist"
+/bin/chmod 644 /Library/LaunchAgents/edu.uh.honors.papercut.plist
+
+echo "Disabling system sleep..."
+/
+
+
+echo "Setting munki to bootstrap mode..."
+touch /Users/Shared/.com.googlecode.munki.checkandinstallatstartup
+ 
+echo "Finished applying firstboot settings."
+ 
+echo "Sleeping for 60 seconds..."
+sleep 60
+
+echo "Done."
+exit 0
