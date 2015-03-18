@@ -14,4 +14,6 @@ echo "Pushing Office preferences LaunchAgent..."
 cp $thinimaging/edu.uh.honors.curlofficeprefs.plist $webscripts/edu.uh.honors.curlofficeprefs.plist
 echo "Pushing PaperCut LaunchAgent..."
 cp $thinimaging/edu.uh.honors.papercut.plist $webscripts/edu.uh.honors.papercut.plist
-echo ""
+
+echo "Pushing login scripts..."
+cp $thinimaging/curl_office_
