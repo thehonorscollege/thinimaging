@@ -3,10 +3,12 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>edu.uh.honors.curlofficeplists</string>
-	<key>Program</key>
-	<string>/usr/bin/curl_office_plists.sh</string>
-	<key>RunAtLoad</key>
+	<string>com.papercut.client.agent</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/Applications/PCClient.app/Contents/MacOS/JavaAppLauncher</string>
+	</array>
+	<key>KeepAlive</key>
 	<true/>
 </dict>
 </plist>
