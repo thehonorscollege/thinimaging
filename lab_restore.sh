@@ -42,8 +42,7 @@ echo "Getting PaperCut login script..."
 /bin/chmod 644 /Library/LaunchAgents/edu.uh.honors.papercut.plist
 
 echo "Disabling system sleep..."
-/
-
+/usr/bin/pmset sleep 0
 
 echo "Setting munki to bootstrap mode..."
 touch /Users/Shared/.com.googlecode.munki.checkandinstallatstartup
