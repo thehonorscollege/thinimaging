@@ -46,7 +46,25 @@ echo "Disabling system sleep..."
 
 echo "Setting munki to bootstrap mode..."
 touch /Users/Shared/.com.googlecode.munki.checkandinstallatstartup
- 
+
+echo "Restricting Active Directory logins..."
+/usr/bin/dscl . -create /Groups/com.apple.loginwindow.netaccounts
+/usr/bin/dscl . -create /Groups/com.apple.loginwindow.netaccounts Password "*"
+/usr/bin/dscl . -create /Groups/com.apple.loginwindow.netaccounts RealName "Login Window's custom net accounts"
+/usr/bin/dscl . -create /Groups/com.apple.loginwindow.netaccounts PrimaryGroupID 206
+
+/usr/sbin/dseditgroup -o edit -n /Local/Default -a HC\ Admins -t group com.apple.loginwindow.netaccounts
+/usr/sbin/dseditgroup -o edit -n /Local/Default -a HC\ Authenticated\ Users -t group com.apple.loginwindow.netaccounts
+/usr/sbin/dseditgroup -o edit -n /Local/Default -a HC\ Students -t group com.apple.loginwindow.netaccounts
+
+/usr/bin/dscl . -create /Groups/com.apple.access_loginwindow
+/usr/bin/dscl . -create /Groups/com.apple.access_loginwindow Password "*"
+/usr/bin/dscl . -create /Groups/com.apple.access_loginwindow PrimaryGroupID 223
+/usr/bin/dscl . -create /Groups/com.apple.access_loginwindow RealName "Login Window ACL"
+
+/usr/sbin/dseditgroup -o edit -n /Local/Default -a localaccount -t group com.apple.access_loginwindow
+/usr/sbin/dseditgroup -o edit -n /Local/Default -a com.apple.loginwindow.netaccounts -t group com.apple.access_loginwindow
+
 echo "Finished applying firstboot settings."
  
 echo "Sleeping for 60 seconds..."
