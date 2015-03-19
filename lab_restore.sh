@@ -27,7 +27,7 @@ echo "Removing damaged PaperCut executable..."
 rm -rv /Volumes/Macintosh\ HD/Applications/PCClient.app
 
 echo "Getting ManagedInstalls.plist..."
-/usr/bin/curl http://hc-storage.cougarnet.uh.edu/munki/ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
+/usr/bin/curl http://hc-storage.cougarnet.uh.edu/munki/lab_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
 
 echo "Getting Office setup script..."
 /usr/bin/curl http://hc-storage.cougarnet.uh.edu/scripts/curl_office_plists.sh -o "/usr/bin/curl_office_plists.sh"
