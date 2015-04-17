@@ -23,9 +23,6 @@ $systemsetup -setremotelogin on
 echo "Turning on RemoteManagement..."
 $kickstart -activate -configure -access -on -users hcadmin -privs -all -restart -agent
 
-echo "Removing damaged PaperCut executable..."
-rm -rv /Volumes/Macintosh\ HD/Applications/PCClient.app
-
 echo "Getting ManagedInstalls.plist..."
 /usr/bin/curl http://hc-storage.cougarnet.uh.edu/munki/advisor_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
 
