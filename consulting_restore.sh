@@ -61,7 +61,7 @@ echo "Added Groups... "
 
 echo "Added login window ACL"
 
-/usr/sbin/dseditgroup -o edit -n /Local/Default -a localaccount -t group com.apple.access_loginwindow
+/usr/sbin/dseditgroup -o edit -n /Local/Default -a localaccounts -t group com.apple.access_loginwindow
 /usr/sbin/dseditgroup -o edit -n /Local/Default -a com.apple.loginwindow.netaccounts -t group com.apple.access_loginwindow
 
 echo "Connected ACL and Groups"
