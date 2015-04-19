@@ -46,17 +46,25 @@ echo "Restricting Active Directory logins..."
 /usr/bin/dscl . -create /Groups/com.apple.loginwindow.netaccounts RealName "Login Window's custom net accounts"
 /usr/bin/dscl . -create /Groups/com.apple.loginwindow.netaccounts PrimaryGroupID 206
 
+echo "Created LoginWindow custom net accounts..."
+
 /usr/sbin/dseditgroup -o edit -n /Local/Default -a HC\ Admins -t group com.apple.loginwindow.netaccounts
 /usr/sbin/dseditgroup -o edit -n /Local/Default -a HC\ Authenticated\ Users -t group com.apple.loginwindow.netaccounts
 /usr/sbin/dseditgroup -o edit -n /Local/Default -a HC\ Students -t group com.apple.loginwindow.netaccounts
+
+echo "Added Groups... "
 
 /usr/bin/dscl . -create /Groups/com.apple.access_loginwindow
 /usr/bin/dscl . -create /Groups/com.apple.access_loginwindow Password "*"
 /usr/bin/dscl . -create /Groups/com.apple.access_loginwindow PrimaryGroupID 223
 /usr/bin/dscl . -create /Groups/com.apple.access_loginwindow RealName "Login Window ACL"
 
+echo "Added login window ACL"
+
 /usr/sbin/dseditgroup -o edit -n /Local/Default -a localaccount -t group com.apple.access_loginwindow
 /usr/sbin/dseditgroup -o edit -n /Local/Default -a com.apple.loginwindow.netaccounts -t group com.apple.access_loginwindow
+
+echo "Connected ACL and Groups"
 
 echo "Finished applying firstboot settings."
  
