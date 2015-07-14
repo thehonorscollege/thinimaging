@@ -3,9 +3,15 @@
 <plist version="1.0">
 	<dict>
 		<key>Label</key>
-		<string>edu.uh.honors.disablescreenlock</string>
+		<string>edu.uh.honors.backup</string>
 		<key>Program</key>
-		<string>/usr/bin/disable_screen_lock.sh</string>
+		<string>/usr/bin/backup.sh</string>
 		<key>RunAtLoad</key>
+		<dict>
+			<key>Hour</key>
+			<integer>22</integer>
+			<key>Minute</key>
+			<integer>0</integer>
+		</dict>
 	</dict>
 </plist>

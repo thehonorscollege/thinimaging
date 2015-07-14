@@ -1,0 +1,19 @@
+Applicant must have experience in following areas:
+
+Mac OS X Administration, including Apple Server, and Profile Manager
+Apple Remote Desktop
+Microsoft Windows
+Active Directory Operations
+Unix/Mac OS Command Line/Bash Scripting
+Basic VMWare ESXi operations/virtualization
+Basic network and computer troubleshooting
+
+
+Requires lots of end user interaction, customer service experience preferred
+
+Experience with the following tools is preferred:
+DeployStudio
+Munki
+PaperCut
+PHP
+FileMaker
