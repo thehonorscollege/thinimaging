@@ -110,7 +110,7 @@ function getSMCFanLaunchDaemon {
 	echo "Getting Fan Speed Script..."
 	/usr/bin/curl $hcstorage/scripts/smc -o "/usr/bin/smc"
 	/bin/chmod +x /usr/bin/smc
-	
+
 	/usr/bin/curl $hcstorage/scripts/smc_fan.sh -o "/usr/bin/smc_fan.sh"
 	/bin/chmod +x /usr/bin/smc_fan.sh
 	
@@ -216,6 +216,10 @@ then
 else
 	restrictActiveDirectoryLogins nostudent
 	getNetworkMountLaunchAgent
+fi
+
+if [ "$4" = "backup" ]
+then
 	getBackupLaunchAgent
 fi
 
