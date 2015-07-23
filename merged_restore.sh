@@ -33,22 +33,22 @@ function getManagedInstallsPlist {
 	echo "Getting ManagedInstalls.plist..."
 	if [ "$1" == "facultystaff" ]
 	then 
-		/usr/bin/curl $hcstorage/munki/facultystaff_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
+		/usr/bin/curl $hcstorage/ManagedInstalls/facultystaff_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
 	elif [ "$1" == "presentation" ]
 	then
-		/usr/bin/curl $hcstorage/munki/consulting_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
+		/usr/bin/curl $hcstorage/ManagedInstalls/consulting_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
 	elif [ "$1" == "consulting" ]
 	then
-		/usr/bin/curl $hcstorage/munki/consulting_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
+		/usr/bin/curl $hcstorage/ManagedInstalls/consulting_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
 	elif [ "$1" == "advisor" ]
 	then 
-		/usr/bin/curl $hcstorage/munki/advisor_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
+		/usr/bin/curl $hcstorage/ManagedInstalls/advisor_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
 	elif [ "$1" == "lab" ]
 	then
-		/usr/bin/curl $hcstorage/munki/lab_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
+		/usr/bin/curl $hcstorage/ManagedInstalls/lab_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
 	elif [ "$1" == "admin" ]
 	then
-		/usr/bin/curl $hcstorage/munki/admin_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
+		/usr/bin/curl $hcstorage/ManagedInstalls/admin_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
 	else
 		echo "Can't load ManagedInstalls.plist..."
 	fi
