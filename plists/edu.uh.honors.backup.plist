@@ -6,7 +6,7 @@
 		<string>edu.uh.honors.backup</string>
 		<key>Program</key>
 		<string>/usr/bin/backup.sh</string>
-		<key>RunAtLoad</key>
+		<key>StartCalendarInterval</key>
 		<dict>
 			<key>Hour</key>
 			<integer>22</integer>
