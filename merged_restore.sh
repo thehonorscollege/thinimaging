@@ -33,22 +33,22 @@ function getManagedInstallsPlist {
 	echo "Getting ManagedInstalls.plist..."
 	if [ "$1" == "facultystaff" ]
 	then 
-		/usr/bin/curl $hcstorage/ManagedInstalls/facultystaff_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
+		/usr/bin/curl -s --show-error $hcstorage/managedinstalls/facultystaff_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
 	elif [ "$1" == "presentation" ]
 	then
-		/usr/bin/curl $hcstorage/ManagedInstalls/consulting_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
+		/usr/bin/curl -s --show-error $hcstorage/managedinstalls/consulting_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
 	elif [ "$1" == "consulting" ]
 	then
-		/usr/bin/curl $hcstorage/ManagedInstalls/consulting_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
+		/usr/bin/curl -s --show-error $hcstorage/managedinstalls/consulting_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
 	elif [ "$1" == "advisor" ]
 	then 
-		/usr/bin/curl $hcstorage/ManagedInstalls/advisor_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
+		/usr/bin/curl -s --show-error $hcstorage/managedinstalls/advisor_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
 	elif [ "$1" == "lab" ]
 	then
-		/usr/bin/curl $hcstorage/ManagedInstalls/lab_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
+		/usr/bin/curl -s --show-error $hcstorage/managedinstalls/lab_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
 	elif [ "$1" == "admin" ]
 	then
-		/usr/bin/curl $hcstorage/ManagedInstalls/admin_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
+		/usr/bin/curl -s --show-error $hcstorage/managedinstalls/admin_ManagedInstalls.plist -o "/Library/Preferences/ManagedInstalls.plist"
 	else
 		echo "Can't load ManagedInstalls.plist..."
 	fi
@@ -56,66 +56,66 @@ function getManagedInstallsPlist {
 
 function getOfficeSetupLaunchAgent {
 	echo "Getting Office setup script..."
-	/usr/bin/curl $hcstorage/scripts/curl_office_plists.sh -o "/usr/bin/curl_office_plists.sh"
+	/usr/bin/curl -s --show-error $hcstorage/scripts/curl_office_plists.sh -o "/usr/bin/curl_office_plists.sh"
 	/bin/chmod +x /usr/bin/curl_office_plists.sh
 	
 	echo "Getting Office preferences login script..."
-	/usr/bin/curl $hcstorage/plists/edu.uh.honors.curlofficeprefs.plist -o "/Library/LaunchAgents/edu.uh.honors.curlofficeprefs.plist"
+	/usr/bin/curl -s --show-error $hcstorage/plists/edu.uh.honors.curlofficeprefs.plist -o "/Library/LaunchAgents/edu.uh.honors.curlofficeprefs.plist"
 	/bin/chmod 644 /Library/LaunchAgents/edu.uh.honors.curlofficeprefs.plist
 }
 
 function getPaperCutLaunchAgent {
 	echo "Getting PaperCut login script..."
-	/usr/bin/curl $hcstorage/plists/edu.uh.honors.papercut.plist -o "/Library/LaunchAgents/edu.uh.honors.papercut.plist"
+	/usr/bin/curl -s --show-error $hcstorage/plists/edu.uh.honors.papercut.plist -o "/Library/LaunchAgents/edu.uh.honors.papercut.plist"
 	/bin/chmod 644 /Library/LaunchAgents/edu.uh.honors.papercut.plist
 }
 
 function getScreenLockLaunchAgent {
 	echo "Installing script to disable screen lock..."
-	/usr/bin/curl $hcstorage/scripts/disable_screen_lock.sh -o "/usr/bin/disable_screen_lock.sh"
-	/bin/chmod +x /usr/bin/curl_office_plists.sh
+	/usr/bin/curl -s --show-error $hcstorage/scripts/disable_screen_lock.sh -o "/usr/bin/disable_screen_lock.sh"
+	/bin/chmod +x /usr/bin/disable_screen_lock.sh
 	
-	/usr/bin/curl $hcstorage/plists/edu.uh.honors.disablescreenlock.plist -o "/Library/LaunchAgents/edu.uh.honors.disablescreenlock.plist"
+	/usr/bin/curl -s --show-error $hcstorage/plists/edu.uh.honors.disablescreenlock.plist -o "/Library/LaunchAgents/edu.uh.honors.disablescreenlock.plist"
 	/bin/chmod 644 /Library/LaunchAgents/edu.uh.honors.disablescreenlock.plist
 }
 
 function getNetworkMountLaunchAgent {
 	echo "Installing script to mount uhs1 share..."
-	/usr/bin/curl $hcstorage/scripts/mount_uhsa1_share.sh -o "/usr/bin/mount_uhsa1_share.sh"
+	/usr/bin/curl -s --show-error $hcstorage/scripts/mount_uhsa1_share.sh -o "/usr/bin/mount_uhsa1_share.sh"
 	/bin/chmod +x /usr/bin/mount_uhsa1_share.sh
 	
-	/usr/bin/curl $hcstorage/plists/edu.uh.honors.mountuhsa1share.plist -o "/Library/LaunchAgents/edu.uh.honors.mountuhsa1share.plist"
+	/usr/bin/curl -s --show-error $hcstorage/plists/edu.uh.honors.mountuhsa1share.plist -o "/Library/LaunchAgents/edu.uh.honors.mountuhsa1share.plist"
 	/bin/chmod 644 /Library/LaunchAgents/edu.uh.honors.mountuhsa1share.plist
 }
 
 function getBackupLaunchAgent {
 	echo "Getting Backup Script..."
-	/usr/bin/curl $hcstorage/scripts/backup.sh -o "/usr/bin/backup.sh"
+	/usr/bin/curl -s --show-error $hcstorage/scripts/backup.sh -o "/usr/bin/backup.sh"
 	/bin/chmod +x /usr/bin/backup.sh
 	
-	/usr/bin/curl $hcstorage/plists/edu.uh.honors.backup.plist -o "/Library/LaunchAgents/edu.uh.honors.backup.plist"
+	/usr/bin/curl -s --show-error $hcstorage/plists/edu.uh.honors.backup.plist -o "/Library/LaunchAgents/edu.uh.honors.backup.plist"
 	/bin/chmod 644 /Library/LaunchAgents/edu.uh.honors.backup.plist
 }
 
 function getKeychainResetLaunchDaemon {
 	echo "Getting Keychain Fix Script..."
-	/usr/bin/curl $hcstorage/scripts/reset_keychains.sh -o "/usr/bin/reset_keychains.sh"
+	/usr/bin/curl -s --show-error $hcstorage/scripts/reset_keychains.sh -o "/usr/bin/reset_keychains.sh"
 	/bin/chmod +x /usr/bin/reset_keychains.sh
 	
-	/usr/bin/curl $hcstorage/plists/edu.uh.honors.resetkeychains.plist -o "/Library/LaunchDaemons/edu.uh.honors.resetkeychains.plist"
+	/usr/bin/curl -s --show-error $hcstorage/plists/edu.uh.honors.resetkeychains.plist -o "/Library/LaunchDaemons/edu.uh.honors.resetkeychains.plist"
 	/bin/chmod 644 /Library/LaunchDaemons/edu.uh.honors.resetkeychains.plist
 }
 
 function getSMCFanLaunchDaemon {
 	echo "Getting Fan Speed Script..."
-	/usr/bin/curl $hcstorage/scripts/smc -o "/usr/bin/smc"
+	/usr/bin/curl -s --show-error $hcstorage/scripts/smc -o "/usr/bin/smc"
 	/bin/chmod +x /usr/bin/smc
 
-	/usr/bin/curl $hcstorage/scripts/smc_fan.sh -o "/usr/bin/smc_fan.sh"
+	/usr/bin/curl -s --show-error $hcstorage/scripts/smc_fan.sh -o "/usr/bin/smc_fan.sh"
 	/bin/chmod +x /usr/bin/smc_fan.sh
 	
-	/usr/bin/curl $hcstorage/plists/.uh.honors.smcfan.plist -o "/Library/LaunchDaemons/edu.uh.honors.smcfan.plist"
-	/bin/chmod 644 /Library/LaunchDaemon/edu.uh.honors.smcfan.plist
+	/usr/bin/curl -s --show-error $hcstorage/plists/.uh.honors.smcfan.plist -o "/Library/LaunchDaemons/edu.uh.honors.smcfan.plist"
+	/bin/chmod 644 /Library/LaunchDaemons/edu.uh.honors.smcfan.plist
 }
 
 function restrictActiveDirectoryLogins {
@@ -197,13 +197,13 @@ then
 fi
 
 #Automatic guest login on classroom and podium computers
-if [ "$1" == "presentation"]
+if [ "$1" == "presentation" ]
 then
 	setAutomaticGuestLogin
 fi
 
 #If computer is shared, we want keychains to reset, and to not lock the screen
-if [ "$2" == "shared"]
+if [ "$2" == "shared" ]
 then
 	getScreenLockLaunchAgent
 	getKeychainResetLaunchDaemon
@@ -224,6 +224,7 @@ then
 fi
 
 #Run actions common to all systems
+getOfficeSetupLaunchAgent
 getSMCFanLaunchDaemon
 disableSystemSleep
 disableSaveWindowState
@@ -235,5 +236,6 @@ bootstrapMunki
 
 echo "Done."
 
+sleep 15
 
 exit 0
