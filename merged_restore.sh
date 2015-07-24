@@ -106,18 +106,6 @@ function getKeychainResetLaunchDaemon {
 	/bin/chmod 644 /Library/LaunchDaemons/edu.uh.honors.resetkeychains.plist
 }
 
-function getSMCFanLaunchDaemon {
-	echo "Getting Fan Speed Script..."
-	/usr/bin/curl -s --show-error $hcstorage/scripts/smc -o "/usr/bin/smc"
-	/bin/chmod +x /usr/bin/smc
-
-	/usr/bin/curl -s --show-error $hcstorage/scripts/smc_fan.sh -o "/usr/bin/smc_fan.sh"
-	/bin/chmod +x /usr/bin/smc_fan.sh
-	
-	/usr/bin/curl -s --show-error $hcstorage/plists/.uh.honors.smcfan.plist -o "/Library/LaunchDaemons/edu.uh.honors.smcfan.plist"
-	/bin/chmod 644 /Library/LaunchDaemons/edu.uh.honors.smcfan.plist
-}
-
 function restrictActiveDirectoryLogins {
 	echo "Restricting Active Directory logins..."
 	/usr/bin/dscl . -create /Groups/com.apple.loginwindow.netaccounts
@@ -225,7 +213,6 @@ fi
 
 #Run actions common to all systems
 getOfficeSetupLaunchAgent
-getSMCFanLaunchDaemon
 disableSystemSleep
 disableSaveWindowState
 disableAutomaticSoftwareUpdates
