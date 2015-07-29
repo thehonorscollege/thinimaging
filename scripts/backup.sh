@@ -26,7 +26,7 @@ fi
 
 #Check if it's the weekend. If it's the weekend, do a full backup. If it's a weekday, do an incremental backup.
 echo "Running incremental backup..."
-rsync -rltDPh  --exclude=*/.Trash/* /Users $backuppath/
+rsync -rltDPh  --exclude='*.Trash/*' --exclude='*Downloads/*' --exclude='*Caches/' --exclude='.*' /Users $backuppath/
 #in case of larry
 if [ $host = "hc-fmp" ]
 then
