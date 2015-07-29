@@ -25,23 +25,12 @@ else
 fi
 
 #Check if it's the weekend. If it's the weekend, do a full backup. If it's a weekday, do an incremental backup.
-if [ $dayofweek -lt "6" ]
+echo "Running incremental backup..."
+rsync -rltDPh  --exclude=*/.Trash/* /Users $backuppath/
+#in case of larry
+if [ $host = "hc-fmp" ]
 then
-	echo "Running incremental backup..."
-	rm -rf $backppath/daily.$dayofweek
-	rsync -rltDPh  --exclude=*/.Trash/* --link-dest=$backuppath/weekly /Users $backuppath/daily.$dayofweek
-	#in case of larry
-	if [ $host = "hc-fmp" ]
-	then
-		echo "Backing up FileMaker..."
-		rsync -rltDPh --link-dest=$backuppath/current/Library/ /Library/Filemaker\ Server $backuppath/daily.$dayofweek/Library
-	fi
-	rm -f $backuppath/current
-	ln -s daily.$dayofweek $backuppath/current
-else
-	rsync -rltDPhu --exclude=*/.Trash/* /Users $backuppath/weekly
-	rm -f $backuppath/current
-	ln -s weekly $backuppath/current
+	echo "Backing up FileMaker..."
+	rsync -rltDPh /Library/Filemaker\ Server $backuppath/Library
 fi
-
 umount /Volumes/Backups
