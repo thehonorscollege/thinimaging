@@ -11,6 +11,7 @@ airport="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current
 diskutil="/usr/sbin/diskutil"
 hcstorage="http://hc-storage.cougarnet.uh.edu/"
 
+
 function turnOffAirport {
 	$networksetup -detectnewhardware
 	echo "Turning off airport..."
@@ -93,8 +94,8 @@ function getBackupLaunchAgent {
 	/usr/bin/curl -s --show-error $hcstorage/scripts/backup.sh -o "/usr/bin/backup.sh"
 	/bin/chmod +x /usr/bin/backup.sh
 	
-	/usr/bin/curl -s --show-error $hcstorage/plists/edu.uh.honors.backup.plist -o "/Library/LaunchAgents/edu.uh.honors.backup.plist"
-	/bin/chmod 644 /Library/LaunchAgents/edu.uh.honors.backup.plist
+	/usr/bin/curl -s --show-error $hcstorage/plists/edu.uh.honors.backup.plist -o "/Library/LaunchDaemons/edu.uh.honors.backup.plist"
+	/bin/chmod 644 /Library/LaunchDaemons/edu.uh.honors.backup.plist
 }
 
 function getKeychainResetLaunchDaemon {
