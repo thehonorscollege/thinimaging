@@ -6,7 +6,6 @@ if mount | grep "uhsa1.cougarnet.uh.edu/HCShare on /Volumes/HCShare" > /dev/null
 then
 	echo "Mounted."
 else
-	rm -rf /Volumes/HCSHare
 	mkdir /Volumes/HCshare
 	#hcadmin doesn't need access to these things
 	if [ $currentuser = "hcadmin" ]

@@ -1,5 +1,8 @@
 #!/bin/sh
 
-defaults="/usr/bin/defaults"
+osascript="/usr/bin/osascript"
 
-defaults write com.apple.screensaver askForPassword -int 0
+
+osascript -e 'tell application "System Events" to set require password to wake of security preferences to false'
+#Doesn't work
+#defaults write com.apple.screensaver askForPassword -int 0

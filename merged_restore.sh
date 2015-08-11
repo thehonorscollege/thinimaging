@@ -89,7 +89,7 @@ function getNetworkMountLaunchAgent {
 	/bin/chmod 644 /Library/LaunchAgents/edu.uh.honors.mountuhsa1share.plist
 }
 
-function getBackupLaunchAgent {
+function getBackupLaunchDaemon {
 	echo "Getting Backup Script..."
 	/usr/bin/curl -s --show-error $hcstorage/scripts/backup.sh -o "/usr/bin/backup.sh"
 	/bin/chmod +x /usr/bin/backup.sh
@@ -204,12 +204,13 @@ then
 	restrictActiveDirectoryLogins student
 else
 	restrictActiveDirectoryLogins nostudent
-	getNetworkMountLaunchAgent
+	#Converted to mobileconfig and deployed through munki
+	#getNetworkMountLaunchAgent
 fi
 
 if [ "$4" = "backup" ]
 then
-	getBackupLaunchAgent
+	getBackupLaunchDaemon
 fi
 
 #Run actions common to all systems

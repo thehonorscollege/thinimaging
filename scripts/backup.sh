@@ -7,26 +7,18 @@ backuppath="/Volumes/Backups/$host"
 currentuser="$(whoami)"
 
 # Determine and/or mount backup drive.
-if mount | grep "hc-storage.cougarnet.uh.edu/Backups on /Volumes/Backups" > /dev/null;
+if mount | grep "/Volumes/Backups" > /dev/null;
 then
 	echo "Mounted."
 else
-	rm -rf /Volumes/Backups
 	mkdir /Volumes/Backups
-	#hcadmin doesn't exist on the server, so we need to use the generic backup user.
-	if [ $currentuser = "hcadmin" ]
-	then
-		echo "Running as hcbackup..."
-		/sbin/mount -t smbfs //hcbackup:backup@hc-storage.cougarnet.uh.edu/Backups /Volumes/Backups
-	else
-		echo "Running as $currentuser..."
-		/sbin/mount -t smbfs //$currentuser@hc-storage.cougarnet.uh.edu/Backups /Volumes/Backups
-	fi
+	echo "Running as hcautobackup..."
+	/sbin/mount -t smbfs //hcautobackup:'5TYQGYzq~NIAxdI'@hc-storage.cougarnet.uh.edu/Backups /Volumes/Backups
 fi
 
-#Check if it's the weekend. If it's the weekend, do a full backup. If it's a weekday, do an incremental backup.
+#Run backup, updating the files as needed.
 echo "Running incremental backup..."
-rsync -rltDPh  --exclude='*.Trash/*' --exclude='*Downloads/*' --exclude='*Caches/' --exclude='.*' /Users $backuppath/
+rsync -rltDPh  --exclude='*.Trash/*' --exclude='*Downloads/*' --exclude='*Caches/*' --exclude='*.dmg' --exclude='*Application Support/*' --exclude='.*' /Users $backuppath/
 #in case of larry
 if [ $host = "hc-fmp" ]
 then
